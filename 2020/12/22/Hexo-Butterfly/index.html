@@ -1,0 +1,348 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hexo-Butterfly搭建 | Yang's Notes</title><meta name="keywords" content="Hexo,butterfly"><meta name="author" content="Yang"><meta name="copyright" content="Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="配置Hexo - Butterfly一、前言这两天心血来潮给自己的hexo网站换了主题，从yilia到butterfly了，  原sakura主题全部内容放到：http:&#x2F;&#x2F;cungudafa.gitee.io（ps.sakura主题后面作者好像又有更新，我就不更新啦~） 现目前主题butterfly：http:&#x2F;&#x2F;cungudafa.top  简单说一下butterfly的优点：  界面是我的新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo-Butterfly搭建">
+<meta property="og:url" content="https://yang8369.github.io/2020/12/22/Hexo-Butterfly/index.html">
+<meta property="og:site_name" content="Yang&#39;s Notes">
+<meta property="og:description" content="配置Hexo - Butterfly一、前言这两天心血来潮给自己的hexo网站换了主题，从yilia到butterfly了，  原sakura主题全部内容放到：http:&#x2F;&#x2F;cungudafa.gitee.io（ps.sakura主题后面作者好像又有更新，我就不更新啦~） 现目前主题butterfly：http:&#x2F;&#x2F;cungudafa.top  简单说一下butterfly的优点：  界面是我的新">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png">
+<meta property="article:published_time" content="2020-12-22T05:50:15.000Z">
+<meta property="article:modified_time" content="2020-12-23T03:01:01.941Z">
+<meta property="article:author" content="Yang">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="butterfly">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://yang8369.github.io/2020/12/22/Hexo-Butterfly/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Yang","link":"Link: ","source":"Source: Yang's Notes","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: true
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-12-23 11:01:01'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}const fontSizeVal = saveToLocal.get('global-font-size')
+if (fontSizeVal !== undefined) {
+  document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+}})()</script><style type="text/css">#toggle-sidebar {bottom: 80px}</style><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/eee.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">17</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">19</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清單</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友鏈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Yang's Notes</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清單</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友鏈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Hexo-Butterfly搭建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-12-22T05:50:15.000Z" title="Created 2020-12-22 13:50:15">2020-12-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-12-23T03:01:01.941Z" title="Updated 2020-12-23 11:01:01">2020-12-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Hexo/">Hexo</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Hexo/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="配置Hexo-Butterfly"><a href="#配置Hexo-Butterfly" class="headerlink" title="配置Hexo - Butterfly"></a>配置Hexo - Butterfly</h2><h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>这两天心血来潮给自己的hexo网站换了主题，从yilia到butterfly了，</p>
+<ul>
+<li>原sakura主题全部内容放到：<a target="_blank" rel="noopener" href="http://cungudafa.gitee.io/">http://cungudafa.gitee.io</a><br>（ps.sakura主题后面作者好像又有更新，我就不更新啦~）</li>
+<li>现目前主题butterfly：<a target="_blank" rel="noopener" href="http://cungudafa.top/">http://cungudafa.top</a></li>
+</ul>
+<p>简单说一下butterfly的优点：</p>
+<ul>
+<li>界面是我的新宠了（<a target="_blank" rel="noopener" href="https://cungudafa.top/comment/">快速门</a>）</li>
+<li><img src="https://img-blog.csdnimg.cn/20200423192049407.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ul>
+<a id="more"></a> 
+
+<ul>
+<li><p>很多设置优化都单独封装在yml配置了（配置很方便，加载很nice，主题更新也方便）</p>
+</li>
+<li><p>友链单独封装yml文件，不用写index.md了</p>
+</li>
+<li><p><img src="https://img-blog.csdnimg.cn/20200423104601331.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p><strong>不蒜子统计</strong>（这些都是sakura没有完善的，我很心水。）</p>
+</li>
+<li><p><img src="https://img-blog.csdnimg.cn/20200423105008169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p><strong>tags页面</strong><br><img src="https://img-blog.csdnimg.cn/20200423104956464.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>之前我在<a target="_blank" rel="noopener" href="https://blog.csdn.net/cungudafa/article/details/104616500">sakura</a>也是仿这个写的，太卑微了吧。<br><img src="https://img-blog.csdnimg.cn/20200423105216502.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p><strong>动态目录响应</strong>和<strong>相关文章推荐</strong>(这个可以设置插件，心动)</p>
+</li>
+<li><p>大招在<strong>支持黑夜模式和繁简体字转换</strong><br><img src="https://img-blog.csdnimg.cn/2020042310440368.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p><strong>友链</strong><br>和sakura出入不大，参考优化了一下也是美丽许多！（优化步骤见后文）<br><img src="https://img-blog.csdnimg.cn/20200423105433775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p><strong>相册页面</strong> （可）<br><img src="https://img-blog.csdnimg.cn/2020042310561457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>内部的图片展示效果我还在优化中，想自定义css。</p>
+</li>
+</ul>
+<h1 id="二、蝴蝶主题"><a href="#二、蝴蝶主题" class="headerlink" title="二、蝴蝶主题"></a>二、蝴蝶主题</h1><h2 id="1-快速入门"><a href="#1-快速入门" class="headerlink" title="1.快速入门"></a>1.快速入门</h2><blockquote>
+<p>首先，非常感谢主题作者：<a target="_blank" rel="noopener" href="https://jerryc.me/posts/4aa8abbe/#%E5%B0%8E%E8%88%AA%E8%8F%9C%E5%96%AE">JerryC</a> 大佬，使用教程可以参考文档，当然如果遇到什么问题，也可以留言，我也尽最大努力帮助大家优化自己的网站。</p>
+</blockquote>
+<p>主页：<br><img src="https://img-blog.csdnimg.cn/20200423103327641.gif" alt="在这里插入图片描述"><br>如何开始你的hexo-theme-butterfly呢？</p>
+<ol>
+<li><p>官方教程：<a target="_blank" rel="noopener" href="https://jerryc.me/posts/21cfbf15/">快速开始</a><br><img src="https://img-blog.csdnimg.cn/20200423111040302.png" alt="在这里插入图片描述"><br>\1. 第一次使用，一定要仔细阅读参考文档，配置好你的config和source。</p>
+<p>2.其次，还有很多功能是需要安装插件的，申请app_id的都要按照规范做。</p>
+<p>3.最后，注意细节是否有空格，名称路径是否出错。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a1a4ebf0e5fc">Hexo+Butterfly+Github+Coding搭建个人博客</a><br>这篇文章指出需要安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install cheerio --save</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<p>你是否安装可以查看根目录下的<code>package.json</code>，参考我的：</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;hexo-site&quot;</span>,</span><br><span class="line">  <span class="string">&quot;version&quot;</span>: <span class="string">&quot;0.0.0&quot;</span>,</span><br><span class="line">  <span class="string">&quot;private&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;build&quot;</span>: <span class="string">&quot;hexo generate&quot;</span>,</span><br><span class="line">    <span class="string">&quot;clean&quot;</span>: <span class="string">&quot;hexo clean&quot;</span>,</span><br><span class="line">    <span class="string">&quot;deploy&quot;</span>: <span class="string">&quot;hexo deploy&quot;</span>,</span><br><span class="line">    <span class="string">&quot;server&quot;</span>: <span class="string">&quot;hexo server&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;hexo&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;version&quot;</span>: <span class="string">&quot;4.2.0&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;cheerio&quot;</span>: <span class="string">&quot;^1.0.0-rc.3&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo&quot;</span>: <span class="string">&quot;^4.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-abbrlink&quot;</span>: <span class="string">&quot;^2.0.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-algolia&quot;</span>: <span class="string">&quot;^1.3.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-blog-encrypt&quot;</span>: <span class="string">&quot;^3.0.12&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-deployer-git&quot;</span>: <span class="string">&quot;^2.1.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-generator-archive&quot;</span>: <span class="string">&quot;^1.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-generator-baidu-sitemap&quot;</span>: <span class="string">&quot;^0.1.6&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-generator-category&quot;</span>: <span class="string">&quot;^1.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-generator-feed&quot;</span>: <span class="string">&quot;^2.2.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-generator-index-pin-top&quot;</span>: <span class="string">&quot;^0.2.2&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-generator-json-content&quot;</span>: <span class="string">&quot;^4.1.6&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-generator-searchdb&quot;</span>: <span class="string">&quot;^1.3.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-generator-sitemap&quot;</span>: <span class="string">&quot;^2.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-generator-tag&quot;</span>: <span class="string">&quot;^1.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-neat&quot;</span>: <span class="string">&quot;^1.0.4&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-permalink-pinyin&quot;</span>: <span class="string">&quot;^1.1.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-related-popular-posts&quot;</span>: <span class="string">&quot;^4.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-renderer-ejs&quot;</span>: <span class="string">&quot;^1.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-renderer-marked&quot;</span>: <span class="string">&quot;^2.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-renderer-pug&quot;</span>: <span class="string">&quot;^1.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-renderer-stylus&quot;</span>: <span class="string">&quot;^1.1.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-server&quot;</span>: <span class="string">&quot;^1.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-tag-bili&quot;</span>: <span class="string">&quot;^1.0.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-tag-fancybox_img&quot;</span>: <span class="string">&quot;^1.0.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hexo-wordcount&quot;</span>: <span class="string">&quot;^6.0.1&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">123456789101112131415161718192021222324252627282930313233343536373839404142</span><br></pre></td></tr></table></figure>
+<h2 id="2-valine评论移植"><a href="#2-valine评论移植" class="headerlink" title="2.valine评论移植"></a>2.valine评论移植</h2><p>如果你之前有过主题，可不可以把评论也搬过来呢？</p>
+<p>当然是可以的！</p>
+<ol>
+<li>注意把<code>yml</code>配置的链接路径对应上（这是访问路径）<br><img src="https://img-blog.csdnimg.cn/20200423134013402.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>因为在leancloud存储里是域名和链接页面的路径，只要路径一样就可以显示之前主题的留言啦！<br><img src="https://img-blog.csdnimg.cn/20200423134319397.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>leancloud显示是从域名拼接路径，就像这样，（这样设置的确可以在两个域名都显示同一组评论，不过valine-admin（zhaojun版）返回邮件的地址只有一个哦！最好还是再建立一个leancloud后台容器！）<br><img src="https://img-blog.csdnimg.cn/20200423134459925.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>在页面中，渲染样式是根据主题来设置的！！！（注意<code>links\index.md</code>的type是<code>link</code>）<br><img src="https://img-blog.csdnimg.cn/20200423140214830.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>解释一下：<code>type: link</code>是从全局渲染<code>data\link.yml</code>友链内容到<code>links\index.md</code>中</li>
+</ol>
+<ul>
+<li>这里需要把<strong>link.yml</strong>改为<code>links.yml</code><br>即这个内容文件时\links\index.html页面所用</li>
+<li>同时修改<strong>flink.pug</strong>引用link.yml为<code>links.yml</code> （即：site.data.link改为<code>site.data.links</code>）<br><img src="https://img-blog.csdnimg.cn/20200423140834211.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">总结：valine评论移植，只要相对路径搞好，就可。</li>
+</ul>
+<h2 id="3-文章移植"><a href="#3-文章移植" class="headerlink" title="3.文章移植"></a>3.文章移植</h2><p>我以前设置的是<a target="_blank" rel="noopener" href="https://blog.csdn.net/cungudafa/article/details/104312892#t3">hexo-abbrlink插件——随机访问路径</a>，这里在主配置文件下不用修改，<br>但是，在文章里注意这个abbrlink的地址也要写过来哦！</p>
+<p>sakura到butterfly的区别是（作者信息没有了，首图top_img还有cover封面的覆盖图，根据之前的教程设置吧——<a target="_blank" rel="noopener" href="https://jerryc.me/posts/dc584b87/">主题页面</a>。）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">abbrlink: <span class="string">&#x27;44e8&#x27;</span></span><br><span class="line">title: 微信公众号（二）扩展分享</span><br><span class="line">tags:</span><br><span class="line">  - 微信公众号</span><br><span class="line">categories: 技术</span><br><span class="line">comment: <span class="literal">true</span></span><br><span class="line">description: <span class="string">&#x27;cungudafa:在学习中的小王呀&#x27;</span></span><br><span class="line">top_img: https://img-blog.csdnimg.cn/20200306151717593.png</span><br><span class="line">cover: https://img-blog.csdnimg.cn/20200306151717593.png</span><br><span class="line">date: 2020-03-06 16:54:10</span><br><span class="line">---</span><br><span class="line">123456789101112</span><br></pre></td></tr></table></figure>
+<p>同理，文章的相对路径没变的话，以前的评论也可以拉取过来哦！<br><img src="https://img-blog.csdnimg.cn/20200423134906725.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="三、个性美化"><a href="#三、个性美化" class="headerlink" title="三、个性美化"></a>三、个性美化</h1><p>以下页面需要在目录显示，请设置butterfly.yml<br>如果需要中英文设置，请在主题<code>themes\Butterfly\languages</code> 设置。</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  主页: / || fa fa-home</span><br><span class="line">  博文||fa fa-graduation-cap: </span><br><span class="line"><span class="bullet">    -</span> 归档 || /archives/ || fa fa-folder-open</span><br><span class="line"><span class="bullet">    -</span> 分类 || /categories/ || fa fa-archive</span><br><span class="line"><span class="bullet">    -</span> 标签 || /tags/ || fa fa-tags</span><br><span class="line">  生活||fa fa-diamond:</span><br><span class="line"><span class="bullet">    -</span> 说说 || /shuoshuo/ || fa fa-comments-o</span><br><span class="line"><span class="bullet">    -</span> 相册 || /photos/ || fa fa-camera-retro</span><br><span class="line"><span class="code">    #- 音乐 || /music/ || fa fa-music</span></span><br><span class="line"><span class="code">    #- 视频 || /movies/ || fa fa-video-camera</span></span><br><span class="line"><span class="code">  友链: /links/ || fa fa-link</span></span><br><span class="line"><span class="code">  留言板: /comment/ || fa fa-paper-plane</span></span><br><span class="line"><span class="code">  #留言板: /messageboard/ || fa fa-paper-plane</span></span><br><span class="line"><span class="code">  关于: /about/ || fa fa-heart</span></span><br><span class="line"><span class="code">123456789101112131415</span></span><br></pre></td></tr></table></figure>
+<h2 id="1-boyui对话框式简介页面"><a href="#1-boyui对话框式简介页面" class="headerlink" title="1.boyui对话框式简介页面"></a>1.boyui对话框式简介页面</h2><p><img src="https://img-blog.csdnimg.cn/20200423090002518.gif" alt="在这里插入图片描述"></p>
+<ol>
+<li>css和<a target="_blank" rel="noopener" href="https://www.bootcdn.cn/botui/">官网</a>一致。</li>
+<li>你可以下载<a target="_blank" rel="noopener" href="https://cungudafa.gitee.io/js/botui.js">我的botui.js</a>，然后修改后文（你想要显示的）内容即可。<br><img src="https://img-blog.csdnimg.cn/20200423095755630.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>修改你要显示的页面，加上css和js引用，标签是：<code>&lt;bot-ui&gt;&lt;/botui&gt;</code><br><code>source\about\index.md</code><br>我这个外框直接从sakura移植过来的，具体也贴出来了，方便copy！</li>
+</ol>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: about</span><br><span class="line">date: 2020-2-12 22:14:36</span><br><span class="line">keywords: 关于</span><br><span class="line">description: </span><br><span class="line">comments: false</span><br><span class="line">top<span class="emphasis">_img: https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/banner/about.jpg</span></span><br><span class="line"><span class="emphasis">---</span></span><br><span class="line"><span class="emphasis">&lt;!-- https://www.bootcdn.cn/botui/ --&gt;</span></span><br><span class="line"><span class="emphasis"><span class="xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.bootcss.com/botui/0.3.9/botui-theme-default.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis"><span class="xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.bootcss.com/botui/0.3.9/botui.min.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">&#123;% raw %&#125;</span></span><br><span class="line"><span class="emphasis">&lt;!-- 因为vue和botui更新导至bug,现将对话移至js下的botui中配置 --&gt;</span></span><br><span class="line"><span class="emphasis"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;entry-content&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">  <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;moe-mashiro&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align:center; font-size: 50px; margin-bottom: 20px;&quot;</span>&gt;</span></span>[姑の小屋]<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">  <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;hello-mashiro&quot;</span> <span class="attr">class</span>=<span class="string">&quot;popcontainer&quot;</span> <span class="attr">style</span>=<span class="string">&quot;min-height: 300px; padding: 2px 6px 4px; background-color: rgb(36, 200, 255); border-radius: 10px;&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    <span class="xml"><span class="tag">&lt;<span class="name">center</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    <span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    <span class="xml"><span class="tag">&lt;<span class="name">h4</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    与&amp;nbsp;<span class="xml"><span class="tag">&lt;<span class="name">ruby</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    cungudafa&amp;nbsp;<span class="xml"><span class="tag">&lt;<span class="name">rp</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    （<span class="xml"><span class="tag">&lt;/<span class="name">rp</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    <span class="xml"><span class="tag">&lt;<span class="name">rt</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    真（ま）白（しろ）<span class="xml"><span class="tag">&lt;/<span class="name">rt</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    <span class="xml"><span class="tag">&lt;<span class="name">rp</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    ）<span class="xml"><span class="tag">&lt;/<span class="name">rp</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    <span class="xml"><span class="tag">&lt;/<span class="name">ruby</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    对话中...<span class="xml"><span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    <span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    <span class="xml"><span class="tag">&lt;/<span class="name">center</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">    <span class="xml"><span class="tag">&lt;<span class="name">bot-ui</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">botui</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">  <span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">&lt;!--<span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cungudafa.gitee.io/js/botui.js&gt;</span></span></span><span class="xml"><span class="tag"><span class="string">&lt;/script&gt;</span></span></span>--&gt;</span></span><br><span class="line"><span class="emphasis"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/js/third-party/botui.js&quot;</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">bot_</span>ui<span class="emphasis">_ini()</span></span><br><span class="line"><span class="emphasis"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span></span><br><span class="line"><span class="emphasis">&#123;% endraw %&#125;</span></span><br><span class="line"><span class="emphasis">123456789101112131415161718192021222324252627282930313233343536373839404142</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-说说动态页面"><a href="#2-说说动态页面" class="headerlink" title="2.说说动态页面"></a>2.说说动态页面</h2><p><img src="https://img-blog.csdnimg.cn/20200423095138883.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>这个功能我也是从我之前的 <a target="_blank" rel="noopener" href="https://blog.csdn.net/cungudafa/article/details/104503242">sakura主题</a> 搬过来的<a target="_blank" rel="noopener" href="https://gitee.com/cungudafa/source/raw/master/css/shuoshuo.css">静态的样式css</a>，稍加修改。</p>
+<p><img src="https://img-blog.csdnimg.cn/202004230951065.png" alt="在这里插入图片描述"><br><code>source\shuoshuo\index.md</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: shuoshuo</span><br><span class="line"><span class="built_in">type</span>: shuoshuo</span><br><span class="line">noDate: <span class="string">&#x27;true&#x27;</span></span><br><span class="line">comments: <span class="string">&#x27;false&#x27;</span></span><br><span class="line">top_img: https://cdn.jsdelivr.net/gh/cungudafa/img/images/food.jpg</span><br><span class="line">---</span><br><span class="line">&lt;link rel=<span class="string">&quot;stylesheet&quot;</span> href=<span class="string">&quot;https://gitee.com/cungudafa/source/raw/master/css/shuoshuo.css&quot;</span>&gt;</span><br><span class="line">&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;div class=<span class="string">&quot;photos-btn-wrap&quot;</span>&gt;</span><br><span class="line">	&lt;!-- &lt;a class=<span class="string">&quot;photos-btn&quot;</span> href=<span class="string">&quot;http://cungudafa.top/photos/&quot;</span>&gt;Photos&lt;/a&gt; --&gt;</span><br><span class="line">	&lt;a class=<span class="string">&quot;photos-btn active&quot;</span> href=<span class="string">&quot;&quot;</span>&gt;说说&lt;/a&gt;</span><br><span class="line">    &lt;a class=<span class="string">&quot;photos-btn&quot;</span> href=<span class="string">&quot;https://space.bilibili.com/430247358&quot;</span>&gt;视频&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">&quot;primary&quot;</span> class=<span class="string">&quot;content-area&quot;</span> style=<span class="string">&quot;&quot;</span>&gt;</span><br><span class="line">    &lt;main id=<span class="string">&quot;main&quot;</span> class=<span class="string">&quot;site-main&quot;</span> role=<span class="string">&quot;main&quot;</span>&gt;</span><br><span class="line">        &lt;div id=<span class="string">&quot;shuoshuo_content&quot;</span>&gt;</span><br><span class="line">            &lt;ul class=<span class="string">&quot;cbp_tmtimeline&quot;</span>&gt;</span><br><span class="line">                &lt;li&gt; &lt;span class=<span class="string">&quot;shuoshuo_author_img&quot;</span>&gt;&lt;img src=<span class="string">&quot;https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/custom/cungudafa.jpg&quot;</span> class=<span class="string">&quot;avatar avatar-48&quot;</span> width=<span class="string">&quot;48&quot;</span> height=<span class="string">&quot;48&quot;</span>&gt;&lt;/span&gt;</span><br><span class="line">                    &lt;div class=<span class="string">&quot;cbp_tmlabel&quot;</span> href=<span class="string">&quot;&quot;</span>&gt;</span><br><span class="line">                        &lt;p&gt;&lt;/p&gt;</span><br><span class="line">                        &lt;p&gt;&lt;strong&gt;sakura主题改为butterfly主题&lt;/strong&gt;&lt;/p&gt;</span><br><span class="line">                        &lt;p&gt;强肝了一天，我累了&lt;p&gt;</span><br><span class="line">                        &lt;p&gt;&lt;/p&gt;</span><br><span class="line">                        &lt;p class=<span class="string">&quot;shuoshuo_time&quot;</span>&gt;&lt;i class=<span class="string">&quot;fa fa-clock-o&quot;</span>&gt;&lt;/i&gt;</span><br><span class="line">                            2020年4月21日</span><br><span class="line">                        &lt;/p&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">                &lt;li&gt; &lt;span class=<span class="string">&quot;shuoshuo_author_img&quot;</span>&gt;&lt;img src=<span class="string">&quot;https://cdn.jsdelivr.net/gh/cungudafa/cdn/img/custom/cungudafa.jpg&quot;</span> class=<span class="string">&quot;avatar avatar-48&quot;</span> width=<span class="string">&quot;48&quot;</span> height=<span class="string">&quot;48&quot;</span>&gt;&lt;/span&gt;</span><br><span class="line">                    &lt;div class=<span class="string">&quot;cbp_tmlabel&quot;</span> href=<span class="string">&quot;&quot;</span>&gt;</span><br><span class="line">                        &lt;p&gt;&lt;/p&gt;</span><br><span class="line">                        &lt;p&gt;第一个说说&lt;/p&gt;</span><br><span class="line">                        &lt;p&gt;&lt;/p&gt;</span><br><span class="line">                        &lt;p class=<span class="string">&quot;shuoshuo_time&quot;</span>&gt;&lt;i class=<span class="string">&quot;fa fa-clock-o&quot;</span>&gt;&lt;/i&gt;</span><br><span class="line">                            2020年2月25日</span><br><span class="line">                        &lt;/p&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">12345678910111213141516171819202122232425262728293031323334353637383940414243</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>针对静态说说不能在线发布的问题，Uncle_drew 研究的gtalk在线发布<a target="_blank" rel="noopener" href="https://cndrew.cn/shuoshuo/%EF%BC%8C%E8%BF%99%E6%98%AF%E5%8F%A6%E4%B8%80%E6%AC%BE%E8%AF%84%E8%AE%BA%E5%90%8E%E5%8F%B0%EF%BC%8C%E9%98%B2%E6%AD%A2%E5%92%8Cvaline%E8%AF%84%E8%AE%BA%E5%86%B2%E7%AA%81%EF%BC%8C%E7%94%A8%E4%BA%86%E4%B8%A4%E4%B8%AA%E5%90%8E%E5%8F%B0%E3%80%82">https://cndrew.cn/shuoshuo/，这是另一款评论后台，防止和valine评论冲突，用了两个后台。</a></p>
+</blockquote>
+<h2 id="3-友链页面优化"><a href="#3-友链页面优化" class="headerlink" title="3.友链页面优化"></a>3.友链页面优化</h2><p>默认：<br><img src="https://img-blog.csdnimg.cn/20200423113224158.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>优化：<br><img src="https://img-blog.csdnimg.cn/20200423113308946.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://www.antmoe.com/posts/1dc865d0/index.html">Hexo关于Butterfly的一些小修改</a></p>
+</blockquote>
+<p>我直接将修改步骤再贴一遍，如果觉得好用，记得去上面链接的原博留言打卡，谢！</p>
+<ol>
+<li>修改<code>themes\Butterfly\layout\flink.pug</code>渲染样式<br>（ctrl+/注释掉原来的内容，将下面添加进去：）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#page</span></span><br><span class="line">  .flink<span class="comment">#article-container</span></span><br><span class="line">    each i <span class="keyword">in</span> site.data.links</span><br><span class="line">      h2= i.class_name</span><br><span class="line">      .post-cards</span><br><span class="line">        .md-links</span><br><span class="line">          each item <span class="keyword">in</span> i.link_list</span><br><span class="line">            .md-links-item(style= item.color ? `--primary-color:<span class="variable">$&#123;item.color&#125;</span>;border-width:<span class="variable">$&#123;item.width&#125;</span>;border-style:<span class="variable">$&#123;item.style&#125;</span>;animation: <span class="variable">$&#123;item.custom&#125;</span> <span class="variable">$&#123;item.time&#125;</span> infinite alternate; background:<span class="variable">$&#123;item.background&#125;</span>` : <span class="string">&#x27;border-width:0px;border-style:solid;animation: link_custom 0s infinite alternate;background:0&#x27;</span>)</span><br><span class="line">              a.customcolor(href=item.link  title=item.name target=<span class="string">&quot;_blank&quot;</span> rel=item.remove ? <span class="string">&quot;external nofollow&quot;</span> : <span class="string">&quot;&quot;</span> style=item.namecolor ? `--namecolor:<span class="variable">$&#123;item.namecolor&#125;</span>` : <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">                <span class="keyword">if</span> theme.lazyload.enable</span><br><span class="line">                  img.lazyload(data-src=item.avatar onerror=`this.onerror=null;this.src=<span class="string">&#x27;` + url_for(theme.lodding_bg.flink) + `&#x27;</span>` alt=item.name,style=item.rotate ? `--primary-rotate:<span class="variable">$&#123;item.rotate&#125;</span>;--autotime:<span class="variable">$&#123;item.autotime&#125;</span>;` : <span class="string">&#x27;--primary-rotate:0deg&#x27;</span> class=item.autorotate ? `<span class="variable">$&#123;item.autorotate&#125;</span>` : <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                  img(src=item.avatar onerror=`this.onerror=null;this.src=<span class="string">&#x27;` + url_for(theme.lodding_bg.flink) + `&#x27;</span>` alt=item.name )</span><br><span class="line">                .md-links-title= item.name </span><br><span class="line">                .md-links-des= item.descr</span><br><span class="line">    != page.content</span><br><span class="line">  <span class="keyword">if</span> page.comments !== <span class="literal">false</span></span><br><span class="line">    include includes/comments/index.pug</span><br><span class="line">123456789101112131415161718</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>添加css样式，外链<br>（ctrl+F全局搜索 <strong>css:</strong> ，并添加外链 ）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">    - https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020042311371055.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N1bmd1ZGFmYQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>使用方法：<br>在link.yml里写：</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">	  name: 姓名</span><br><span class="line">      link: 地址</span><br><span class="line">      avatar: 头像</span><br><span class="line">      descr: 描述</span><br><span class="line">      <span class="comment"># 边框大小 默认为0 </span></span><br><span class="line">      width: 0px</span><br><span class="line">      <span class="comment"># 边框样式 默认 solid</span></span><br><span class="line">      style: solid</span><br><span class="line">      <span class="comment"># 边框颜色 默认淡蓝色 #49b1f5</span></span><br><span class="line">      color: <span class="string">&quot;#49b1f5&quot;</span></span><br><span class="line">      <span class="comment"># 自动旋转 可选值 flash（闪现） link_custom（单色呼吸灯） link_custom1（彩色呼吸灯）</span></span><br><span class="line">      custom: link_custom</span><br><span class="line">      <span class="comment"># 动画时长设定，默认为0</span></span><br><span class="line">      time: 4s</span><br><span class="line">      <span class="comment"># name的颜色</span></span><br><span class="line">      namecolor: <span class="string">&quot;#ff6699&quot;</span></span><br><span class="line">      <span class="comment"># descr的颜色</span></span><br><span class="line">      descolor: <span class="string">&quot;#ff6699&quot;</span></span><br><span class="line">      <span class="comment"># 背景颜色</span></span><br><span class="line">      background: 0</span><br><span class="line">      <span class="comment"># 鼠标悬停旋转角度</span></span><br><span class="line">      rotate: 360deg</span><br><span class="line">      <span class="comment"># 自动旋转 latuo左旋转 rauto右旋转</span></span><br><span class="line">      autorotate: <span class="string">&quot;lauto&quot;</span></span><br><span class="line">      <span class="comment"># 旋转的周期（时长）</span></span><br><span class="line">      autotime: 0s</span><br><span class="line">      <span class="comment">#移除此链接的权重 0为否 非0为移除</span></span><br><span class="line">      remove: 0</span><br><span class="line">12345678910111213141516171819202122232425262728</span><br></pre></td></tr></table></figure>
+<h1 id="四、添加评论"><a href="#四、添加评论" class="headerlink" title="四、添加评论"></a>四、添加评论</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>个人博客搭建成功后已经上线运行了好久，但是一直没有时间配置评论区的邮件提醒功能，所以今晚有时间就抽空配置了，然后将操作过程做一下记录。</p>
+<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ul>
+<li>一个已经上线运行的Hexo博客(至于用什么主题都是没有强制要求的)</li>
+</ul>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h3 id="1、为博客配置Valine评论系统"><a href="#1、为博客配置Valine评论系统" class="headerlink" title="1、为博客配置Valine评论系统"></a>1、为博客配置Valine评论系统</h3><p>Hexo博客支持的评论系统其实有很多，像之前使用过的来比力啥的，但是目前好多博客都配置了Valine，所以我博客也选择了这一款评论系统，原因无他：轻量级、访问速度快、配置过程简单，以上三个原因足够我使用它了。</p>
+<p>Valine评论系统的配置其实很简单，大家直接看它的官网文档还是随便百度一下配置过程，都有大量的资料。在这里就简单介绍一下。</p>
+<p>1.1、首先要去LeanCloud官网(<a target="_blank" rel="noopener" href="https://www.leancloud.cn/)%E6%B3%A8%E5%86%8C%E4%B8%80%E4%B8%AA%E5%B8%90%E5%8F%B7%EF%BC%8C%E8%B4%A6%E5%8F%B7%E6%B3%A8%E5%86%8C%E6%88%90%E5%8A%9F%E5%90%8E%EF%BC%8C%E6%88%91%E4%BB%AC%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8%EF%BC%8C%E5%A6%82%E4%B8%8B%EF%BC%9A">https://www.leancloud.cn/)注册一个帐号，账号注册成功后，我们在控制台创建一个应用，如下：</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20200710120906355.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM1MTE3MDI0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200710120918650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM1MTE3MDI0,size_16,color_FFFFFF,t_70" alt="img">1.2、应用创建完成后，点击应用小卡片右上角的设置按钮进入到应用设置面板，在此面板下的【设置 | 应用Keys】菜单下，获取应用的AppID和AppKey，如下图：<img src="https://img-blog.csdnimg.cn/2020071012093913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM1MTE3MDI0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>1.3、然后将AppID和AppKey这两个属性值复制粘贴到Butterfly主题的配置文件中，其他主题也类似，粘贴到主题的配置文件中即可，如下：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">appId:</span>  <span class="comment"># leancloud application app id</span></span><br><span class="line">  <span class="attr">appKey:</span>  <span class="comment"># leancloud application app key</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># comment list page size</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">monsterid</span> <span class="comment"># gravatar style https://valine.js.org/#/avatar</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">en</span> <span class="comment"># i18n: zh-CN/zh-TW/en/ja</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">記得留下你的暱稱和郵箱....可以快速收到回復</span> <span class="comment"># valine comment input placeholder(like: Please leave your footprints )</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment">#valine comment header info (nick/mail/link)</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">false</span> <span class="comment"># Record reviewer IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)</span></span><br><span class="line">  <span class="attr">bg:</span> <span class="string">/image/comment_bg.png</span> <span class="comment"># valine background</span></span><br><span class="line">  <span class="attr">emojiCDN:</span> <span class="comment"># emoji CDN</span></span><br><span class="line">  <span class="attr">enableQQ:</span> <span class="literal">false</span> <span class="comment"># enable the Nickname box to automatically get QQ Nickname and QQ Avatar</span></span><br><span class="line">  <span class="attr">requiredFields:</span> <span class="string">nick,mail</span> <span class="comment"># required fields (nick/mail)</span></span><br><span class="line">  <span class="attr">option:</span></span><br></pre></td></tr></table></figure>
+<p>1.5、最后，我们在leancloud中的应用设置界面中，通过【设置 | 安全中心】菜单，将我们博客的域名添加到安全中心，如下<img src="https://img-blog.csdnimg.cn/20200710121030598.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM1MTE3MDI0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>1.6、如果配置完之后没有出现评论面板，那你可要认真看看对应的主题应该怎么配置Valine评论系统了，比如博主使用最新版的Butterfly主题后，配置了Valine但是没有出现评论面板，经过大佬的指导才发现是漏写了一处配置，如下：</p>
+<p>comments:<br>  use:<br>  -Valine</p>
+<p>加上以上语句就可以正常显示评论面板了，我们也可以正常留言评论。</p>
+<h3 id="2、为Valine评论系统增加邮件提醒功能"><a href="#2、为Valine评论系统增加邮件提醒功能" class="headerlink" title="2、为Valine评论系统增加邮件提醒功能"></a>2、为Valine评论系统增加邮件提醒功能</h3><p>为博客配置了评论系统后，如果你不是一个追求完美的小伙伴的话，其实博客已经优化的差不多了，但是博主还希望它可以做到如果有小伙伴在博客上留言了的话，可以直接邮件提醒博主，所以接下来就介绍下为Valine评论系统增加邮件提醒功能的配置过程。</p>
+<p>首先要注意的是，目前LeanCloud中的面板已经改版了，所以网上很多关于配置邮件提醒的博客文档里的图片已经不太适用，有些按钮、面板我们在新的界面中找不到，所以我才将配置过程记录下来。</p>
+<p>2.1、打开LeanCloud的控制台，然后进入应用的设置界面，然后通过【云引擎 | 设置】菜单，进入到云引擎的相关配置面板，然后在”自定义环境变量”处新建以下变量名和值：<img src="https://img-blog.csdnimg.cn/20200710121115583.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM1MTE3MDI0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>以上图片中关于”SMTP_PASS”的值获取方式如下：</p>
+<p>首先打开QQ邮箱界面，然后依次点击【设置 | 账户】菜单，如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020071012124515.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM1MTE3MDI0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>然后点击下方，开启IMAP/SMTP服务，如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200710121300724.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM1MTE3MDI0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>开启后会得到一串字符串，将那一串字符串复制粘贴到云引擎面板中的”SMTP_PASS”属性后面作为它的值。</p>
+<p>2.2、接下来部署生产环境。依次点击【云引擎 | 部署】菜单，打开部署界面，然后通过如下所示部署Valine-Admin，如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200710121318224.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM1MTE3MDI0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>以上的GitHub地址如下”<a target="_blank" rel="noopener" href="https://github.com/DesertsP/Valine-Admin.git&quot;%EF%BC%8C%E5%BF%85%E9%A1%BB%E9%85%8D%E7%BD%AE%E8%BF%99%E4%B8%AA%E5%9C%B0%E5%9D%80%EF%BC%8C%E4%B8%8D%E7%84%B6%E6%88%91%E4%BB%AC%E7%82%B9%E5%87%BB%E9%83%A8%E7%BD%B2%E6%8C%89%E9%92%AE%E5%90%8E%EF%BC%8C%E5%AE%83%E5%9C%A8%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B%E4%B8%AD%E4%BC%9A%E6%8A%A5%E9%94%99%E3%80%82">https://github.com/DesertsP/Valine-Admin.git&quot;，必须配置这个地址，不然我们点击部署按钮后，它在部署过程中会报错。</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://yang8369.github.io/2020/12/22/Hexo-Butterfly/">https://yang8369.github.io/2020/12/22/Hexo-Butterfly/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a><a class="post-meta__tags" href="/tags/butterfly/">butterfly</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> Donate<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/12/22/%E5%88%9B%E5%BB%BAvue/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg3.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">VUE入门笔记</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/06/06/Hexo-Yilia/" title="Hexo-Yilia搭建"><img class="cover" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg2.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-06</div><div class="title">Hexo-Yilia搭建</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEHexo-Butterfly"><span class="toc-number">1.</span> <span class="toc-text">配置Hexo - Butterfly</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-number"></span> <span class="toc-text">一、前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%9D%B4%E8%9D%B6%E4%B8%BB%E9%A2%98"><span class="toc-number"></span> <span class="toc-text">二、蝴蝶主题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">1.</span> <span class="toc-text">1.快速入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-valine%E8%AF%84%E8%AE%BA%E7%A7%BB%E6%A4%8D"><span class="toc-number">2.</span> <span class="toc-text">2.valine评论移植</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%96%87%E7%AB%A0%E7%A7%BB%E6%A4%8D"><span class="toc-number">3.</span> <span class="toc-text">3.文章移植</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%B8%AA%E6%80%A7%E7%BE%8E%E5%8C%96"><span class="toc-number"></span> <span class="toc-text">三、个性美化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-boyui%E5%AF%B9%E8%AF%9D%E6%A1%86%E5%BC%8F%E7%AE%80%E4%BB%8B%E9%A1%B5%E9%9D%A2"><span class="toc-number">1.</span> <span class="toc-text">1.boyui对话框式简介页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AF%B4%E8%AF%B4%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.</span> <span class="toc-text">2.说说动态页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2%E4%BC%98%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">3.友链页面优化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA"><span class="toc-number"></span> <span class="toc-text">四、添加评论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">前提条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.</span> <span class="toc-text">操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%B8%BA%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AEValine%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.1.</span> <span class="toc-text">1、为博客配置Valine评论系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E4%B8%BAValine%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E5%A2%9E%E5%8A%A0%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E5%8A%9F%E8%83%BD"><span class="toc-number">3.2.</span> <span class="toc-text">2、为Valine评论系统增加邮件提醒功能</span></a></li></ol></li></ol></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By Yang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://butterfly.js.org/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="Increase font size"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="Decrease font size"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">簡</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'NnmJus2ejrDbi1DEX0A1E2eC-gzGzoHsz',
+      appKey: '5CiIdBrUa2qOpS4pzEwPsN8t',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_親親":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再見":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_發怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_發財":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可愛":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_嘔吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_壞笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尷尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_驚嚇":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div class="aplayer no-destroy" data-id="000PeZCQ1i4XVs" data-server="tencent" data-type="artist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script></div></body></html>
